@@ -1,2 +1,5 @@
 .vscode/settings.json
 .obsidian/*
+
+# ignore sites for now
+site

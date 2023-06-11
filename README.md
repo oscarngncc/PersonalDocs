@@ -1,18 +1,14 @@
-# Publish your Obsidian Notes
+# Personal Docs
 
-(MkDocs template)
+## Run Locally
 
-Would you like to take _some_ of your notes in [Obsidian](https://obsidian.md/) and make it public?
+1. Install python and pip
 
-This template gives you an easy (and automated) way to publish your Obsidian notes on your Github pages.
+2. run `pip install -r requirement.txt`
 
-With this template, you get these **out-of-the-box**:
+3. Run `python -m mkdocs build --no-directory-urls`. Remove `python -m` if not in Windows
 
-- an awesome website based on Material theme, complete with a search bar (Checkout this template repo published [here](https://jobindjohn.github.io/obsidian-publish-mkdocs/))
-![](2021-11-22-22-49-26.png)
-- get the Obsidian/Roam style `[[wikilinks]]` from your vault in your published notes
-- Toggle between light and dark mode
-
+4. Run `start "site\index.html"` (or `wslview site/index.html` and any linux equivalent of opening static html)
 
 ## Quick start
 
