@@ -1,11 +1,19 @@
-# Obsidian Notes
+# Welcome!
 
-Publish your public notes with MkDocs
+Hi, my name is Oscar Ng 👋
 
-## Hello World!
+This is my personal wiki, a little digital garden where my experiences, knowledges, opinions and thoughts are cumulated. They may be outdated (or biased), but I'll try my best to keep them up to date! 
 
-The `index.md` in the `/docs` folder is the homepage you see here.
-
-The folders in `/docs` appear as the main sections on the navigation bar.
-
-The notes appear as pages within these sections. For example, [[Note 1]] in `Topic 1`
+<details>
+<summary>Open to see how dots interconnects themselves! 🚀</summary>
+<iframe id="test"
+        title='test'
+        src="obsidian_graph.html"
+        class="graph"
+        width="100%"
+        height="600px"
+        allowtransparency="true"
+        style="border: 0px; margin: 0px; padding: 0px; overflow: hidden;"
+        scrolling="no">
+</iframe>
+</details>

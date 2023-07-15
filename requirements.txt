@@ -11,3 +11,5 @@ Markdown
 mkdocs-roamlinks-plugin
 PyYAML==6.0
 setuptools==60.8.2
+obsidiantools
+pyvis

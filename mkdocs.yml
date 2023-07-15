@@ -1,9 +1,8 @@
-site_name: Oscar's Personal Documentation
+site_name: Oscar's Personal Handbook
 
 theme:
     name: 'material'
     palette:
-    
     # Dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
