@@ -4,7 +4,7 @@
 
 1. Install python and pip
 
-2. run `pip install -r requirement.txt`
+2. run `pip install -r requirements.txt`
 
 3. Run `python -m mkdocs build --no-directory-urls`. Remove `python -m` if not in Windows
 

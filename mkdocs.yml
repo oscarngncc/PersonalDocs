@@ -22,6 +22,11 @@ theme:
         icon: material/toggle-switch
         name: Switch to dark mode
 
+# 1. Automatic index.md in section, refer to mkdocs-section-index,
+# 2. Extended nav syntax from mkdocs-literate-nav, Refer to
+# https://oprypin.github.io/mkdocs-literate-nav/reference.html#mkdocs-native-nav
+nav:
+- devops: ['devops/*']
 
 # Extensions
 markdown_extensions:
@@ -46,7 +51,9 @@ markdown_extensions:
 
 plugins:
   - search
-  - roamlinks 
+  - roamlinks
+  - literate-nav
+  - section-index
   - mermaid2
 
 extra_javascript:

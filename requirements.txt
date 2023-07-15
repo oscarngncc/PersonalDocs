@@ -2,12 +2,12 @@ mkdocs
 mkdocs-material
 mkdocs-mermaid2-plugin
 mkdocs-ezlinked-plugin
-mkdocs-awesome-pages-plugin
+mkdocs-literate-nav
+mkdocs-section-index
 mdx_breakless_lists
 mkdocs-preview-links-plugin
 mkdocs-embed-file-plugins
 Markdown
-obs2mk
 mkdocs-roamlinks-plugin
 PyYAML==6.0
 setuptools==60.8.2

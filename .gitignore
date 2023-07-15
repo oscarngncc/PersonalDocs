@@ -3,3 +3,7 @@
 
 # ignore sites for now
 site
+
+# ignore docs content that is copied from Vault
+docs/*
+!docs/index.md
