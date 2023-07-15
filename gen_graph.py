@@ -22,8 +22,8 @@ def obsidian_graph():
     net = Network(
         height="750px", 
         width="100%", 
-        bgcolor="pink", 
-        font_color="black",
+        bgcolor="#222222", 
+        font_color="white",
     )
     net.from_nx(graph)
     
