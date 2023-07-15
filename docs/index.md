@@ -6,8 +6,8 @@ This is my personal wiki, a little digital garden where my experiences, knowledg
 
 <details>
 <summary>Open to see how dots interconnects themselves! 🚀</summary>
-<iframe id="test"
-        title='test'
+<iframe id="obsidian_graph"
+        title='obsidian_graph'
         src="obsidian_graph.html"
         class="graph"
         width="100%"
