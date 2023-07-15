@@ -12,8 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          repository: oscarngncc/Obsidiandocs
+          path: obsidian-docs
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
       - run: pip install -r requirements.txt
+      - name: Copy Vault Content Over
+        run: |
+          mv obsidian-docs/* docs/
+      - run: ./gen_graph.py
       - run: mkdocs gh-deploy --force
