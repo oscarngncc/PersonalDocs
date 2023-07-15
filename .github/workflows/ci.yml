@@ -5,6 +5,7 @@ on:
       - master
       - main
     paths:
+      - 'gen_graph.py'
       - 'mkdocs.yml'
       - 'docs/**'
 jobs:
