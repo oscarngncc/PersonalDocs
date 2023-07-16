@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - 'gen_graph.py'
+      - 'gen_index_md.py'
       - 'mkdocs.yml'
       - 'docs/**'
 jobs:
@@ -25,7 +26,7 @@ jobs:
           python-version: 3.x
       - run: pip install -r requirements.txt
       - name: Copy Vault Content Over
-        run: |
-          mv obsidian-docs/* docs/
+        run: mv obsidian-docs/* docs/
+      - run: ./gen_index_md.py
       - run: ./gen_graph.py
       - run: mkdocs gh-deploy --force

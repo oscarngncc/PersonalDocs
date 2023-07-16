@@ -25,7 +25,10 @@ theme:
 # 2. Extended nav syntax from mkdocs-literate-nav, Refer to
 # https://oprypin.github.io/mkdocs-literate-nav/reference.html#mkdocs-native-nav
 nav:
-- devops: ['devops/*']
+- devops:
+  - platform engineering: 'devops/platform engineering/'
+  - networking: devops/networking/
+  - jenkins: devops/jenkins/
 
 # Extensions
 markdown_extensions:
