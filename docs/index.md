@@ -1,5 +1,7 @@
 # Welcome!
 
+## Intro
+
 Hi, my name is Oscar Ng 👋
 
 This is my personal wiki, a little digital garden where my experiences, knowledges, opinions and thoughts are cumulated. They may be outdated (or biased), but I'll try my best to keep them up to date! 
@@ -17,3 +19,7 @@ This is my personal wiki, a little digital garden where my experiences, knowledg
         scrolling="no">
 </iframe>
 </details>
+
+## Credit
+
+Shut out to [Jobin Join](https://github.com/jobindjohn/obsidian-publish-mkdocs) for the useful template!
