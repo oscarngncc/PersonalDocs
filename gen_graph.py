@@ -17,8 +17,9 @@ from pyvis.network import Network
 
 def obsidian_graph():
     vault_path = Path(Path.cwd(), "docs")
-    vault = otools.Vault(vault_path).connect().gather()
+    vault = otools.Vault(vault_path).connect(attachments=True).gather()
     graph = vault.graph
+    print(graph.number_of_edges())
     net = Network(
         height="750px", 
         width="100%", 

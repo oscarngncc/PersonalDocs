@@ -32,10 +32,10 @@ def index_folder(folderPath: Path):
 		#Avoiding index.md files
 		if ".md" in file and file != 'index.md':
 			numContentMDFile += 1
-			indexBody += "- [" + file.replace(".md", "") + "]" + "(" + file.replace(" ", "%20") + ")" +  "\n"
+			indexBody += "- [[" + file.replace(".md", "") + "]]" +  "\n"
 		if os.path.isdir(folderPath / file):
 			numSubFolder += 1
-			indexBody += "- [" + file.replace(".md", "") + "]" + "(" + file.replace(" ", "%20") + ")" +  "\n"
+			indexBody += "- [[" + file.replace(".md", "") + "]]" +  "\n"
 			#Recursive call to continue indexing
 			index_folder(folderPath / file)
 
