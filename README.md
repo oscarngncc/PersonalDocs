@@ -8,11 +8,13 @@
 
 2. run `pip install -r requirements.txt`
 
-3. Run `./gen_graph.py` to generate content for obsidian_graph.html
+3. Run `python ./gen_index_md.py` to generate index.md for vault
 
-4. Run `python -m mkdocs build --no-directory-urls`. Remove `python -m` if not in Windows
+4. Run `python ./gen_graph.py` to generate content for obsidian_graph.html
 
-5. Run `start "site\index.html"` (or `wslview site/index.html` and any linux equivalent of opening static html)
+5. Run `python -m mkdocs build --no-directory-urls`. Remove `python -m` if not in Windows
+
+6. Run `start "site\index.html"` (or `wslview site/index.html` and any linux equivalent of opening static html)
 
 ## Configuring the website
 
