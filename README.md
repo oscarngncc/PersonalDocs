@@ -1,6 +1,6 @@
 # Personal Docs
 
-![Site-Deploy](https://github.com/oscarngncc/PersonalDocs/actions/workflows/ci/badge.svg)
+![Site-Deploy](https://github.com/oscarngncc/PersonalDocs/actions/workflows/ci.yml/badge.svg)
 
 ## Run Locally
 
