@@ -22,4 +22,4 @@ This is my personal wiki, a little digital garden where my experiences, knowledg
 
 ## Credit
 
-Shut out to [Jobin Join](https://github.com/jobindjohn/obsidian-publish-mkdocs) for the useful template!
+Shout out to [Jobin Join](https://github.com/jobindjohn/obsidian-publish-mkdocs) for the useful template!
