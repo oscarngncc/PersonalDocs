@@ -29,6 +29,7 @@ nav:
   - platform engineering: 'devops/platform engineering/'
   - networking: devops/networking/
   - jenkins: devops/jenkins/
+  - terraform: devops/terraform/
 
 # Extensions
 markdown_extensions:
