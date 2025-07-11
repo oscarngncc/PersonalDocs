@@ -10,6 +10,6 @@ mkdocs-embed-file-plugins
 Markdown
 mkdocs-roamlinks-plugin
 PyYAML==6.0
-setuptools==60.8.2
+setuptools==78.1.1
 obsidiantools
 pyvis
