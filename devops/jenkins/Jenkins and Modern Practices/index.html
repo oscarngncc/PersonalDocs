@@ -1,0 +1,668 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../Jenkins%20Tips%20and%20Tricks/" rel="prev"/>
+<link href="../../terraform/" rel="next"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
+<title>Jenkins and Modern Practices - Oscar's Personal Handbook</title>
+<link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="blue" data-md-color-primary="pink" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#jenkins-and-modern-practices">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Oscar's Personal Handbook" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Oscar's Personal Handbook">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Oscar's Personal Handbook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Jenkins and Modern Practices
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="blue" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="pink" data-md-color-scheme="slate" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+</label>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="pink" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Oscar's Personal Handbook" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Oscar's Personal Handbook">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Oscar's Personal Handbook
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    devops
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    devops
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../platform%20engineering/Platform%20Overview/">
+<span class="md-ellipsis">
+    
+  
+    platform engineering
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../networking/">
+<span class="md-ellipsis">
+    
+  
+    networking
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_1_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    networking
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../networking/Certificates/">
+<span class="md-ellipsis">
+    
+  
+    Certificates
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../networking/OSI%207%20Layers/">
+<span class="md-ellipsis">
+    
+  
+    OSI 7 Layers
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
+    
+  
+    jenkins
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_1_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    jenkins
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Jenkins%20Tips%20and%20Tricks/">
+<span class="md-ellipsis">
+    
+  
+    Jenkins Tips and Tricks
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Jenkins and Modern Practices
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    Jenkins and Modern Practices
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#intro">
+<span class="md-ellipsis">
+      
+        Intro
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#everything-as-code-the-organized-practice">
+<span class="md-ellipsis">
+      
+        Everything as Code - The Organized Practice
+      
+    </span>
+</a>
+<nav aria-label="Everything as Code - The Organized Practice" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deployment-as-code">
+<span class="md-ellipsis">
+      
+        Deployment as Code
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#jscac">
+<span class="md-ellipsis">
+      
+        Jscac
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#job-dsl">
+<span class="md-ellipsis">
+      
+        Job DSL
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#jenkinsfile">
+<span class="md-ellipsis">
+      
+        Jenkinsfile
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shared-libraries">
+<span class="md-ellipsis">
+      
+        Shared Libraries
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#offloading-logic-outside-pipeline">
+<span class="md-ellipsis">
+      
+        Offloading logic outside pipeline
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#final-thoughts-against-the-trend">
+<span class="md-ellipsis">
+      
+        Final Thoughts - Against the trend?
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../terraform/">
+<span class="md-ellipsis">
+    
+  
+    terraform
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_1_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    terraform
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../terraform/Terraform%20Kubernetes%20Module/">
+<span class="md-ellipsis">
+    
+  
+    Terraform Kubernetes Module
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../terraform/Terraform%20test/">
+<span class="md-ellipsis">
+    
+  
+    Terraform test
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#intro">
+<span class="md-ellipsis">
+      
+        Intro
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#everything-as-code-the-organized-practice">
+<span class="md-ellipsis">
+      
+        Everything as Code - The Organized Practice
+      
+    </span>
+</a>
+<nav aria-label="Everything as Code - The Organized Practice" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deployment-as-code">
+<span class="md-ellipsis">
+      
+        Deployment as Code
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#jscac">
+<span class="md-ellipsis">
+      
+        Jscac
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#job-dsl">
+<span class="md-ellipsis">
+      
+        Job DSL
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#jenkinsfile">
+<span class="md-ellipsis">
+      
+        Jenkinsfile
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shared-libraries">
+<span class="md-ellipsis">
+      
+        Shared Libraries
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#offloading-logic-outside-pipeline">
+<span class="md-ellipsis">
+      
+        Offloading logic outside pipeline
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#final-thoughts-against-the-trend">
+<span class="md-ellipsis">
+      
+        Final Thoughts - Against the trend?
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="jenkins-and-modern-practices">Jenkins and Modern Practices<a class="headerlink" href="#jenkins-and-modern-practices" title="Permanent link">¶</a></h1>
+<h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">¶</a></h2>
+<p>Like it or not, Jenkins is still THE most popular CI/CD framework out there, at least in 2023.  You are using Jenkins, probably because of the following reasons:</p>
+<ul>
+<li>Company is already using Jenkins</li>
+<li>Company wants to stick with Jenkins because hiring is easier</li>
+<li>Company wants to stick with Jenkins because it is free</li>
+<li>Company wants to stick with Jenkins because others are not as flexible</li>
+<li>you choose Jenkins still, fully knowing how to maintain one</li>
+</ul>
+<p>Regardless, there are many pitfalls, including but not limited to:</p>
+<ol>
+<li>Upgrading Jenkins version</li>
+<li>Maintaining Jenkins Plugin</li>
+<li>People relying too much on configuration through UIs  (ClickOps)</li>
+<li>People writing complex, non-declaractive scripted pipelines</li>
+</ol>
+<p>Ultimately, the biggest problem is that Jenkins can easily turn into an urban sprawl - as number of pipelines, plugins, configuration rapidly grows and interlink/depends on each other, it makes jenkins a nightmare for engineers to maintain, and nobody is happy living in this unregulated mess either. </p>
+<p>One way to achieve consistency for Jenkins is to treat it as a proper software-product:  <strong>make everything, from jenkinsfile, job configuration to Jenkins itself, presentable as code and go through standard validation and testing process like any software</strong>. The following sections provide some examples to achieve it</p>
+<h2 id="everything-as-code-the-organized-practice">Everything as Code - The Organized Practice<a class="headerlink" href="#everything-as-code-the-organized-practice" title="Permanent link">¶</a></h2>
+<h3 id="deployment-as-code">Deployment as Code<a class="headerlink" href="#deployment-as-code" title="Permanent link">¶</a></h3>
+<p>While it's possible to install Jenkins directly on bare-metal machine,  it should still be hosted like any production-workload with enough care, such as:</p>
+<ul>
+<li>deploy Jenkins as container (i.e. Docker) if possible</li>
+<li>install Jenkins with Helm Charts or <a href="https://www.jenkins.io/projects/jenkins-operator/">Jenkins Operator</a> if in Kubernetes</li>
+<li>Use an ansible playbook or others if deployed in Virtual machine</li>
+<li>Use a Virtual machine image if deployed in Virtual Machine</li>
+<li>have deployment script, Dockerfile and manifest available somewhere in Git-repository. </li>
+</ul>
+<p>It's a chicken-and-egg problem that CI/CD itself requires deployment, but it can optionally be deployed with other toolings instead (Terraform, Ansible, Other CI etc)</p>
+<h3 id="jscac">Jscac<a class="headerlink" href="#jscac" title="Permanent link">¶</a></h3>
+<p>Jscac stands for <a href="https://www.jenkins.io/projects/jcasc/">Jenkins Configuration As Code</a>, which allows jenkins configurations, including plugins, nodes and credentials, to be fully configurable in YAML.  This allows jenkins environment to be reproducible such that it is consistent across dev/stage/prod environment.</p>
+<h3 id="job-dsl">Job DSL<a class="headerlink" href="#job-dsl" title="Permanent link">¶</a></h3>
+<p><a href="https://plugins.jenkins.io/job-dsl/">Job DSL</a> is a jenkins plugin that allows jobs (i.e. folder, pipelines) to be setup through code/automation rather than doing it through UI.  </p>
+<p>It's usually less important as the pipeline code itself already allows customization of the job configuration, but when there are MANY pipelines (&gt;10)  to be used regularly in production, you should consider a plugin like this</p>
+<h3 id="jenkinsfile">Jenkinsfile<a class="headerlink" href="#jenkinsfile" title="Permanent link">¶</a></h3>
+<p>Jenkinsfile is a native feature in Jenkins that allows pipeline as code, similar to workflow yaml in GitHub Action.  Not much to say here, other than the recommended practice of using  <a href="https://www.jenkins.io/doc/book/pipeline/syntax/">declarative syntax</a></p>
+<pre><code>pipeline {
+    agent any
+    options {
+        // Timeout counter starts AFTER agent is allocated
+        timeout(time: 1, unit: 'SECONDS')
+    }
+    stages {
+        stage('Example') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="shared-libraries">Shared Libraries<a class="headerlink" href="#shared-libraries" title="Permanent link">¶</a></h3>
+<p>Jenkins support sharing of common functions through <a href="https://www.jenkins.io/doc/book/pipeline/shared-libraries/">Jenkins shared libraries</a>. </p>
+<p>Personally, I am not a huge fan of it, as it requires functions to be written in groovy (which ends up being wrapper function of a bash script), and even worse: documentation written in txt file next to the groovy function that only appears after first pipeline-sccessful run.  </p>
+<pre><code>(root)
++- src                     # Groovy source files
+|   +- org
+|       +- foo
+|           +- Bar.groovy  # for org.foo.Bar class
++- vars
+|   +- foo.groovy          # for global 'foo' variable
+|   +- foo.txt             # help for 'foo' variable
++- resources               # resource files (external libraries only)
+|   +- org
+|       +- foo
+|           +- bar.json    # static helper data for org.foo.Bar
+</code></pre>
+<p>However, it still brings enough benefit to the table as it standardizes some of the common function/procedure and make pipeline DRY.</p>
+<p>The only suggestions are:</p>
+<ul>
+<li>avoid making the logic too complex. Isolated, standalone function per <code>.groovy</code>  is enough</li>
+<li>make the function easy to use for cross-team consumption. e.g. <code>connectToCluster(name)</code> . Groovy does support default parameters so try to keep compulsory parameters as few as possible.</li>
+<li>write JUnit Test</li>
+</ul>
+<h3 id="offloading-logic-outside-pipeline">Offloading logic outside pipeline<a class="headerlink" href="#offloading-logic-outside-pipeline" title="Permanent link">¶</a></h3>
+<p>Not a jenkins-specific practice, but rather good CI/CD practice in general. Put the bulk of pipeline logics (e.g.  image building,  automation) outside of pipeline code, such that logics can be developed, tested  verified locally and make them transferrable across other CI/CD.  Solution includes:</p>
+<ul>
+<li>locally-runnable bash script</li>
+<li>Makefile, to a certain extent</li>
+<li>Build System like Gradle with gradle task,  npm with <code>npm scripts</code></li>
+<li>Language specific setups like <code>console_scripts</code> in Python</li>
+<li><a href="dagger.io">dagger.io</a> </li>
+</ul>
+<p>Then the abstracted logic can simply be called from CI/CD through passed command flags/parameters/environment variable.</p>
+<h2 id="final-thoughts-against-the-trend">Final Thoughts - Against the trend?<a class="headerlink" href="#final-thoughts-against-the-trend" title="Permanent link">¶</a></h2>
+<p>Certain practices above are easy to do, while others are not. Often times, A dedicated 'Devops' team will be needed to enforcing standard as well as maintaining the usage of Jenkins, potentailly with a (few) centralized jenkins-related repo(s), while strictly following the Jenkins-as-code philosophy above.</p>
+<p>This raises a lot of challenges:</p>
+<ul>
+<li>not supposed to have a dedicated Devops team!  (Devops is mindset yada yada)</li>
+<li>maintaining every pipeline by a central team gets intensive &amp; demanding real quick</li>
+<li>Challenges of versioning jenkinsfile/cicd in a centralized jenkins/cicd repo </li>
+<li>not everyone care about it realistically speaking, especially developers that don't want to touch CI/CD</li>
+<li>not agile enough if required to comply with so many standards</li>
+<li>centralized setup may not work well with other practices/plugin (e.g. multibranch pipeline plugin)</li>
+<li>centralized setup that was setup previously needs to be reevaluated as business grows</li>
+</ul>
+<p>And if you think about it, modern CI/CD like GitHub Action or Gitlab CI/CD:</p>
+<ul>
+<li>has pipeline code heavily tied to a repo as opposed to centralized pipeline repository</li>
+<li>expect the code owner of the repo to take ownership of their CI/CD as well</li>
+<li>decentralized -  Each pipeline is usually isolated/runnable by its own</li>
+</ul>
+<p>There is no perfect solution for this.  An extreme case can be dev &amp; ops side heavily siloed from each other with entirely different tools due to complete freedom, or in the opposite end of everything being too tightly controlled that hammers productivity.</p>
+<p>A hybrid approach can also work, but it depends on how 'hybrid' it would be:</p>
+<ul>
+<li>Tailored towards centralization - tighten security and limit user permission to specific folders</li>
+<li>Balance - Everything-as-code applicable only to busines-critical pipelines, others to a varying degree</li>
+<li>Tailored towards decentralization - Total Freedom except a set of standardized rules to follow, e.g: <ul>
+<li>endproduct must be a container to be uploaded in X registry</li>
+<li>endproduct, as part of microservice, must fulfill OpenAPI standard</li>
+</ul>
+</li>
+</ul>
+<p>Ultimately, there are a lot of decisions to be made with no right-or-wrong answer. The only way moving forward is to satisfy the requirements of majority of stakeholders as opposed to enforcing standards on them.  After all, CI/CD is for streamlining and automating development &amp; deployment process, not slowing things down. </p>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../../../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,1272 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../networking/" rel="next"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
+<title>platform engineering - Oscar's Personal Handbook</title>
+<link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="blue" data-md-color-primary="pink" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#platform-overview">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Oscar's Personal Handbook" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Oscar's Personal Handbook">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Oscar's Personal Handbook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              platform engineering
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="blue" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="pink" data-md-color-scheme="slate" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+</label>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="pink" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Oscar's Personal Handbook" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Oscar's Personal Handbook">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Oscar's Personal Handbook
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    devops
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    devops
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    platform engineering
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    platform engineering
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#intro">
+<span class="md-ellipsis">
+      
+        Intro
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#version-control-system">
+<span class="md-ellipsis">
+      
+        Version Control System
+      
+    </span>
+</a>
+<nav aria-label="Version Control System" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hosted-vcs-service">
+<span class="md-ellipsis">
+      
+        Hosted VCS Service
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cicd">
+<span class="md-ellipsis">
+      
+        CI/CD
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#artifactory">
+<span class="md-ellipsis">
+      
+        Artifactory
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration-management">
+<span class="md-ellipsis">
+      
+        Configuration Management
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#infrastructure-as-code">
+<span class="md-ellipsis">
+      
+        Infrastructure as Code
+      
+    </span>
+</a>
+<nav aria-label="Infrastructure as Code" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terraform-automation-collaboration-software">
+<span class="md-ellipsis">
+      
+        Terraform Automation &amp; Collaboration Software
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#virtual-machine-image">
+<span class="md-ellipsis">
+      
+        Virtual Machine Image
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#containers">
+<span class="md-ellipsis">
+      
+        Containers
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#containers-nodes-orchestration">
+<span class="md-ellipsis">
+      
+        Containers &amp; Nodes Orchestration
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#secrets">
+<span class="md-ellipsis">
+      
+        Secrets
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#monitoring-system">
+<span class="md-ellipsis">
+      
+        Monitoring System
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary">
+<span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../networking/">
+<span class="md-ellipsis">
+    
+  
+    networking
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_1_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    networking
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../networking/Certificates/">
+<span class="md-ellipsis">
+    
+  
+    Certificates
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../networking/OSI%207%20Layers/">
+<span class="md-ellipsis">
+    
+  
+    OSI 7 Layers
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../jenkins/">
+<span class="md-ellipsis">
+    
+  
+    jenkins
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_1_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    jenkins
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../jenkins/Jenkins%20Tips%20and%20Tricks/">
+<span class="md-ellipsis">
+    
+  
+    Jenkins Tips and Tricks
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../jenkins/Jenkins%20and%20Modern%20Practices/">
+<span class="md-ellipsis">
+    
+  
+    Jenkins and Modern Practices
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../terraform/">
+<span class="md-ellipsis">
+    
+  
+    terraform
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_1_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    terraform
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../terraform/Terraform%20Kubernetes%20Module/">
+<span class="md-ellipsis">
+    
+  
+    Terraform Kubernetes Module
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../terraform/Terraform%20test/">
+<span class="md-ellipsis">
+    
+  
+    Terraform test
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#intro">
+<span class="md-ellipsis">
+      
+        Intro
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#version-control-system">
+<span class="md-ellipsis">
+      
+        Version Control System
+      
+    </span>
+</a>
+<nav aria-label="Version Control System" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hosted-vcs-service">
+<span class="md-ellipsis">
+      
+        Hosted VCS Service
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cicd">
+<span class="md-ellipsis">
+      
+        CI/CD
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#artifactory">
+<span class="md-ellipsis">
+      
+        Artifactory
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration-management">
+<span class="md-ellipsis">
+      
+        Configuration Management
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#infrastructure-as-code">
+<span class="md-ellipsis">
+      
+        Infrastructure as Code
+      
+    </span>
+</a>
+<nav aria-label="Infrastructure as Code" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terraform-automation-collaboration-software">
+<span class="md-ellipsis">
+      
+        Terraform Automation &amp; Collaboration Software
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#virtual-machine-image">
+<span class="md-ellipsis">
+      
+        Virtual Machine Image
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#containers">
+<span class="md-ellipsis">
+      
+        Containers
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#containers-nodes-orchestration">
+<span class="md-ellipsis">
+      
+        Containers &amp; Nodes Orchestration
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#secrets">
+<span class="md-ellipsis">
+      
+        Secrets
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#monitoring-system">
+<span class="md-ellipsis">
+      
+        Monitoring System
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary">
+<span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="platform-overview">Platform Overview<a class="headerlink" href="#platform-overview" title="Permanent link">¶</a></h1>
+<h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">¶</a></h2>
+<p>This page provides a basic overview of how various technologies get pieced together in a dev platform</p>
+<p>Have you wondered the big picture of different tools piecing together to ship out a software in a robust platform? Why do we need such a broad range of tools when software development, in its simpliest form, is just code being written, compiled and run? This page aims to give you a holistic view in a dedicated environment setup. </p>
+<h2 id="version-control-system">Version Control System<a class="headerlink" href="#version-control-system" title="Permanent link">¶</a></h2>
+<blockquote>
+<p><strong><em>Problem:</em></strong>  How to maintain a single source of truth while collaborating with others?</p>
+</blockquote>
+<p>Also known as VCS, it is the system for managing changes to code or documentations. VCS is also part of the software configuration management (SCM). See <a href="https://en.wikipedia.org/wiki/Software_configuration_management">wiki</a> </p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Domain</th>
+<th>Interactions</th>
+<th>Characteristics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Git</td>
+<td>VCS</td>
+<td>CLI</td>
+<td>Free and Open Source <a href="https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows">distributed</a> VCS with history based on Directed Acyclic Graph (DAG)</td>
+</tr>
+<tr>
+<td>SVN</td>
+<td>VCS</td>
+<td>CLI</td>
+<td>Centralized VCS</td>
+</tr>
+<tr>
+<td>Mercurial</td>
+<td>VCS</td>
+<td>CLI</td>
+<td>Centralized VCS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hosted-vcs-service">Hosted VCS Service<a class="headerlink" href="#hosted-vcs-service" title="Permanent link">¶</a></h3>
+<blockquote>
+<p><strong><em>Problem:</em></strong> Where to host that main git repository?</p>
+</blockquote>
+<p>With git being the most popular VCS, you still need an easily-accessible-to-all, highly available repository somewhere. Hence the hosting services, which usually couple with other features as well.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Domain</th>
+<th>Interactions</th>
+<th>Characteristics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub</td>
+<td></td>
+<td>Web,CLI,API</td>
+<td></td>
+</tr>
+<tr>
+<td>GitLab</td>
+<td></td>
+<td>Web,CLI,API</td>
+<td></td>
+</tr>
+<tr>
+<td>Bitbucket</td>
+<td></td>
+<td></td>
+<td>Also support Mercurial</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cicd">CI/CD<a class="headerlink" href="#cicd" title="Permanent link">¶</a></h2>
+<blockquote>
+<p><strong><em>Problem:</em></strong> Once the code base changes, can we make sure it can be built?</p>
+</blockquote>
+<p><strong>Continuous integration (CI)</strong> is the practice of automating the integration of code changes in a centralized repository.  An Agent/runner, a computing unit somewhere, is triggered to perform the build (&amp; local test) task.</p>
+<p><strong>Continuous Delivery (CD)</strong> goes one step further, deploying your changes to your infrastructure, like test environment, or promoted to staging/production</p>
+<p><strong>Continuous Deployment</strong> goes all the way from code change to deploy, test, and release into production environment. Less common.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Build</th>
+<th>Basic-Test</th>
+<th>Internal-Publish</th>
+<th>Deploy-Test</th>
+<th>Promote-Staging</th>
+<th>Publish</th>
+<th>Promote-Prod</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Continuous integration</td>
+<td>Auto</td>
+<td>Auto</td>
+<td>Auto</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Continuous Delivery</td>
+<td>Auto</td>
+<td>Auto</td>
+<td>Auto</td>
+<td>Auto/Separate</td>
+<td>Auto/Separate</td>
+<td>Manual/Separate</td>
+<td>Manual/Separate</td>
+</tr>
+<tr>
+<td>Continuous Deployment</td>
+<td>Auto</td>
+<td>Auto</td>
+<td>Auto</td>
+<td>Auto</td>
+<td>Auto</td>
+<td>Auto</td>
+<td>Auto</td>
+</tr>
+</tbody>
+</table>
+<p>Common Requirements including:
+- <strong>pipeline-as-code</strong>: define a series of processes as code
+- <strong>configuration-as-code:</strong> define setup of CI itself as code. Usually in complex environment
+- <strong>shared-lib:</strong> for reusing logics. Usually in enterprise for standardized method
+- <strong>self-host</strong>: agents/runner in your local infrastructure. Flexible and cheaper
+- <strong>containerized-runner</strong>: runner in a container. For better consistency
+- <strong>rbac</strong>: user access control is typically appreciated in enterprise environment</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Domain</th>
+<th style="text-align: left;">Pipeline as code</th>
+<th>Configuration as Code</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub Action</td>
+<td>CI</td>
+<td style="text-align: left;">YAML</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Circle CI</td>
+<td>CI</td>
+<td style="text-align: left;">YAML</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Travis</td>
+<td>CI</td>
+<td style="text-align: left;">YAML</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Team City</td>
+<td>CI &amp; CD</td>
+<td style="text-align: left;">YAML</td>
+<td>Kotlin DSL</td>
+<td></td>
+</tr>
+<tr>
+<td>Jenkins</td>
+<td>CI &amp; CD</td>
+<td style="text-align: left;">Jenkinsfile</td>
+<td>JCASC plugin</td>
+<td>See <a href="../../jenkins/Jenkins%20and%20Modern%20Practices/">Jenkins and Modern Practices</a></td>
+</tr>
+<tr>
+<td>Gitlab CI/CD</td>
+<td>CI &amp; CD</td>
+<td style="text-align: left;">YAML</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>For CD in particular, common requirements including:</p>
+<ul>
+<li><strong>GitOps</strong>: Deployment is driven by Git Changes for Single source of truth, version control, compilance and more</li>
+<li><strong>Kubernetes-friendly</strong>: certain CDs are marketed to be K8S friendly, for example utilizing the controller concept to achieve syncing of k8s resource with the manifest configuration</li>
+<li><strong>Cloud-native</strong>: certain CDs are designed with cloud native in mind</li>
+<li>Other common ones, like self-host, containerized as mentioned above or open-sourced</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Domain</th>
+<th style="text-align: left;">Designed for K8S?</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ArgoCD</td>
+<td>CD</td>
+<td style="text-align: left;">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>FluxCD</td>
+<td>CD</td>
+<td style="text-align: left;">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Concourse</td>
+<td>CI &amp; CD</td>
+<td style="text-align: left;">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Tekton</td>
+<td>CI &amp; CD</td>
+<td style="text-align: left;">Yes</td>
+<td>Donated by Google</td>
+</tr>
+<tr>
+<td>JenkinsX</td>
+<td>CI &amp; CD</td>
+<td style="text-align: left;">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Spinnaker</td>
+<td>CI &amp; CD</td>
+<td style="text-align: left;">No</td>
+<td>Donated by Netflix</td>
+</tr>
+</tbody>
+</table>
+<h2 id="artifactory">Artifactory<a class="headerlink" href="#artifactory" title="Permanent link">¶</a></h2>
+<blockquote>
+<p><strong>*Problem</strong>:  Where to centralize and hosts all the required files? </p>
+</blockquote>
+<p>Artifacts are the concrete unit that will be used in your deployment, including:</p>
+<ul>
+<li>built code, in form of binary, jars, containers or more</li>
+<li>dependencies, in form of binary, jars, packages or more</li>
+<li>unit for distribution and deploying, such as helm charts</li>
+</ul>
+<p>Common requirement includes:</p>
+<ul>
+<li><strong>OCI compilant:</strong>  a standardized format for creating/distributing portable units of applications</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Names</th>
+<th>Remark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JFrog</td>
+<td></td>
+</tr>
+<tr>
+<td>Sonatype Nexus</td>
+<td></td>
+</tr>
+<tr>
+<td>Google Artifact Registry</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration-management">Configuration Management<a class="headerlink" href="#configuration-management" title="Permanent link">¶</a></h2>
+<blockquote>
+<p><strong>*Problem</strong>: How to ensure machines are configured consistently to run programs? </p>
+</blockquote>
+<p>a configuration managment tool configures your (virtual) machine. Following some sort of playbook or rules, it does a one-off,  ideally idempotent change to ensure your target is configured properly</p>
+<p>In a push setup, changes are pushed with specific commands. In a pull setup, changes are pulled with from a centralized master agent</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Code</th>
+<th>Pull/Push</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ansible</td>
+<td>YAML, Python</td>
+<td>Both</td>
+<td></td>
+</tr>
+<tr>
+<td>Puppet</td>
+<td>Ruby, DSL</td>
+<td>Pull</td>
+<td>Require master</td>
+</tr>
+<tr>
+<td>Chef</td>
+<td>Ruby, DSL</td>
+<td>Pull</td>
+<td>Require master</td>
+</tr>
+</tbody>
+</table>
+<h2 id="infrastructure-as-code">Infrastructure as Code<a class="headerlink" href="#infrastructure-as-code" title="Permanent link">¶</a></h2>
+<blockquote>
+<p><strong><em>Problem</em></strong>: How to ensure infrastructure (e.g. machine) are created accordingly?</p>
+</blockquote>
+<p>Contrast to configuration management (CM), Infrastructe as Code (IaC) focus on creation (provisioning) of infrastructure, and keep track of the resource it create to be in state.</p>
+<p>TLDR: IaC create and track stuff it creates;  CM configure and change stuff.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Code</th>
+<th>Declarative?</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Terraform</td>
+<td>HCL</td>
+<td>Yes</td>
+<td>Most Popular</td>
+</tr>
+<tr>
+<td>CDKTerraform</td>
+<td>Python, Go...</td>
+<td>No</td>
+<td>Relatively New</td>
+</tr>
+<tr>
+<td>Pulumi</td>
+<td>Python, Go...</td>
+<td>No</td>
+<td>Based on Terraform</td>
+</tr>
+<tr>
+<td>Cloudformation</td>
+<td>YAML</td>
+<td>Yes</td>
+<td>AWS specific. DONT</td>
+</tr>
+</tbody>
+</table>
+<h3 id="terraform-automation-collaboration-software">Terraform Automation &amp; Collaboration Software<a class="headerlink" href="#terraform-automation-collaboration-software" title="Permanent link">¶</a></h3>
+<blockquote>
+<p><strong>*Problem</strong>: How to execute your IaC properly</p>
+</blockquote>
+<p>While it's possible to use CI/CD to run IaC, a dedicated platform/portal for running IaC can be useful. They are generally described as TACOS.</p>
+<p>Common Requirements include:</p>
+<ul>
+<li><strong>Drift detection</strong>: ability to detect if your infra follows your IaC</li>
+<li><strong>Cost Report</strong>: everything around cost like report, estimation, alerts.</li>
+<li><strong>Self service</strong>: allow others with less expertise to run IaC, with fancy UI and visuals</li>
+<li><strong>Automation</strong>:  following GitOps, plan upon open PR, apply pre-merged or after-merged</li>
+<li><strong>State management</strong>: someone to manage your (terraform) state remotely instead</li>
+<li><strong>Compatibility</strong>: with multi-cloud, with K8S, with Terragrunt/Pulumi, or even beyond TF (Ansible)  </li>
+<li><strong>Customer Support</strong>: most of these are paid services</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Tailored towards</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Terraform Cloud</td>
+<td>Remote state management, Self-service</td>
+</tr>
+<tr>
+<td>Atlantis</td>
+<td>GitOps Pull Request Automation, Opensource, Free</td>
+</tr>
+<tr>
+<td>spacelift</td>
+<td></td>
+</tr>
+<tr>
+<td>env0</td>
+<td></td>
+</tr>
+<tr>
+<td>Scalr</td>
+<td>Remote state management</td>
+</tr>
+<tr>
+<td>Digger</td>
+<td>Opensource</td>
+</tr>
+<tr>
+<td>Terraspace</td>
+<td>Opensource</td>
+</tr>
+<tr>
+<td>Cloudify</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>and of-course, this is not compulsory. Running Terraform in CI can be as simple as using <a href="https://github.com/hashicorp/setup-terraform">the Github Action provided by Hashicorp</a>.</p>
+<h2 id="virtual-machine-image">Virtual Machine Image<a class="headerlink" href="#virtual-machine-image" title="Permanent link">¶</a></h2>
+<blockquote>
+<p><strong>*Problem</strong>: How to ensure consistent creation of  VM Image?</p>
+</blockquote>
+<p>For building Virtual machine image (e.g. AWS AMI), a combination of OS-disk and Data-disk as a reusable unit of VM, the following are the most common:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Packer</td>
+<td>Used alongside with Ansible to configure</td>
+</tr>
+<tr>
+<td>Vagrant</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="containers">Containers<a class="headerlink" href="#containers" title="Permanent link">¶</a></h2>
+<blockquote>
+<p><strong>*Problem</strong>: How to make sure your application runs consistently in any environment?</p>
+</blockquote>
+<p>Evolution of application hosting goes as follows:
+1. Originally running directly in OS. may conflict with other apps (e.g. environment variables)
+2. Hosting a full-fledged virtualized Guest OS per app, undeer Guest OS.  Resource-consuming
+3. Hosting a minimal containized enivronment per app under Container Engine.
+4. Complex usage of many apps (e.g. microservice) to be hosted in given servers</p>
+<p><img alt="application-hosting-evolution.svg" src="../application-hosting-evolution.svg"/></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker</td>
+<td>Most Widely Used</td>
+</tr>
+<tr>
+<td>Podman</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="containers-nodes-orchestration">Containers &amp; Nodes Orchestration<a class="headerlink" href="#containers-nodes-orchestration" title="Permanent link">¶</a></h2>
+<blockquote>
+<p><strong>*Problem</strong>:  How to handle resource allocation, network, storage, operations (e.g. backup, upgrade) of different kinds of containerized apps against multiple computer nodes?</p>
+</blockquote>
+<p>As your service grows, scalability also becomes a complex problem. </p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Self-Hosted/Managed?</th>
+<th>Opensourced?</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kubernetes</td>
+<td>Both</td>
+<td>Yes</td>
+<td>Most popular, originally from Google</td>
+</tr>
+<tr>
+<td>Docker Swarm</td>
+<td>self-Hosted</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Nomad</td>
+<td>self-hosted</td>
+<td>Yes</td>
+<td>from Hashicorp</td>
+</tr>
+</tbody>
+</table>
+<h2 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">¶</a></h2>
+<blockquote>
+<p><strong>*Problem</strong>:  How to store and centralize secret, Certs and credentials properly?</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vault</td>
+<td></td>
+</tr>
+<tr>
+<td>AWS Secret Manager</td>
+<td></td>
+</tr>
+<tr>
+<td>Google Secret Manager</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="monitoring-system">Monitoring System<a class="headerlink" href="#monitoring-system" title="Permanent link">¶</a></h2>
+<blockquote>
+<p><strong>*Problem</strong>:  How to monitor/troubleshoot/evaluate your platform and its deployments?</p>
+</blockquote>
+<p>There are multiple things within a monitoring system, but in a nutshell, it handles:</p>
+<ul>
+<li><strong>logs</strong> - application message to let you know what's happening. Ideally structured (e.g. json)</li>
+<li><strong>metrics</strong> - quantifitable data, usually aggregated, within a given period of time</li>
+<li><strong>alerts</strong> - when the metrics go beyond the threshold, system need to fire warnings</li>
+<li><strong>tracing</strong> - less popular but handles the tracing of a request/response</li>
+</ul>
+<p>The picture below describes the design of a basic yet comprehensive monitoring system, excluding tracing:</p>
+<p><img alt="monitoring-system.svg" src="../monitoring-system.svg"/></p>
+<p>There are a lot of options to choose from, and many different kinds of combination, and you are not limited to one option either:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Purpose</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fluentd</td>
+<td>Log Collector</td>
+<td></td>
+</tr>
+<tr>
+<td>fluentbit</td>
+<td>Log Collector</td>
+<td>fluentd but more lightweight and limited</td>
+</tr>
+<tr>
+<td>promtail</td>
+<td>Log Collector</td>
+<td></td>
+</tr>
+<tr>
+<td>logstash</td>
+<td>Log Collector</td>
+<td>Frequently Used with Elasticsearch, Kibana to form ELK logging stack</td>
+</tr>
+<tr>
+<td>Prometheus</td>
+<td>Metrics Collector, Visualizations</td>
+<td>Pull based, periodically collect metrics actively</td>
+</tr>
+<tr>
+<td>Alertmanager</td>
+<td>Alerting</td>
+<td></td>
+</tr>
+<tr>
+<td>Grafana</td>
+<td>Alerting, Visualizations, Querying</td>
+<td></td>
+</tr>
+<tr>
+<td>Loki</td>
+<td>Log Indexing</td>
+<td>Frequently Used with promtail, Grafana as alternative of ELK</td>
+</tr>
+<tr>
+<td>Elasticsearch</td>
+<td>Log Indexing, Log Storage</td>
+<td></td>
+</tr>
+<tr>
+<td>Kibana</td>
+<td>Visualizations, Querying</td>
+<td></td>
+</tr>
+<tr>
+<td>buckets (s3)</td>
+<td>Log Storage</td>
+<td></td>
+</tr>
+<tr>
+<td>Datadog</td>
+<td>everything</td>
+<td>Full package, expensive, used to be metrics-focused</td>
+</tr>
+<tr>
+<td>Splunk</td>
+<td>everything</td>
+<td>Full package, expensive, used to be log-focused</td>
+</tr>
+</tbody>
+</table>
+<p>Tracing are not covered but that commonly includes <strong>OpenTelemetry, Jaeger, zipkin, Dynatrace, Sentry</strong> (and the 'everything' above), many of which are required to be implemented at app-level.</p>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">¶</a></h2>
+<p>It's impossible to cover so many different technologies used for deployment in a single page, and for different use cases.  To summarize everything in a TLDR fashion, the following sample diagram demonstrate how to setup a environment from code to production</p>
+<p><img alt="code-to-deploy.svg" src="../code-to-deploy.svg"/></p>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../../../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</body>
+</html>
